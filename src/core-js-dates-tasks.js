@@ -215,8 +215,19 @@ function getNextFridayThe13th(/* date */) {
  * Date(2024, 5, 1) => 2
  * Date(2024, 10, 10) => 4
  */
-function getQuarter(/* date */) {
-  throw new Error('Not implemented');
+function getQuarter(date) {
+  const month = date.getMonth();
+  const quartersCode = {
+    1: [0, 1, 2],
+    2: [3, 4, 5],
+    3: [6, 7, 8],
+    4: [9, 10, 11],
+  };
+
+  const quarter = Object.entries(quartersCode).filter((entry) =>
+    entry[1].includes(month)
+  );
+  return +quarter.flat()[0];
 }
 
 /**
@@ -253,8 +264,9 @@ function getWorkSchedule(/* period, countWorkDays, countOffDays */) {
  * Date(2022, 2, 1) => false
  * Date(2020, 2, 1) => true
  */
-function isLeapYear(/* date */) {
-  throw new Error('Not implemented');
+function isLeapYear(date) {
+  const year = date.getFullYear();
+  return year % 4 === 0 && year % 100 !== 0 ? true : year % 400 === 0;
 }
 
 module.exports = {
